@@ -1,3 +1,11 @@
 .header {
     background-color: lumx-color-variant('primary', 'N');
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.small-logo {
+    width: 100px;
+place-self: left;
+
 }

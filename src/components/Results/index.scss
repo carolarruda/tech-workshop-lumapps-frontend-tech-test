@@ -1,0 +1,8 @@
+.item-box {
+    border: 2px solid #049aff;
+    margin: 30px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+}
