@@ -2,10 +2,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "../components/Header";
-import Results from "../components/Results";
-import { get } from "../api/index";
 import ReactPaginate from "react-paginate";
+import { get } from "../api/index";
+import Results from "../components/Results";
+import Header from "../components/Header";
+
+
+
 
 function App() {
   const [data, setData] = useState([]);
@@ -21,11 +24,12 @@ function App() {
         const query = {
           nameStartsWith: search,
         };
-        const response = await get("characters", query);
+        const response = await get('characters', query);
         setData(response.data.data.results);
         setTotalPages(
           Math.ceil(response.data.data.results.length / itemsPerPage)
         );
+		setCurrentPage(0)
       } catch (error) {
         console.error("Error:", error);
       }
@@ -48,12 +52,15 @@ function App() {
         <Header setSearch={setSearch} search={search} />
         <Results data={subset} search={search} />
 
-        <ReactPaginate
-          className="pagination"
-          pageCount={totalPages}
-          onPageChange={handlePageChange}
-          forcePage={currentPage}
-        />
+        {data.length > 0 && (
+          <ReactPaginate
+            className="pagination"
+            pageCount={totalPages}
+            onPageChange={handlePageChange}
+            forcePage={currentPage}
+            activeClassName="selected-page"
+          />
+        )}
         <Switch>
           <Route exact path="/">
             <section className="lumx-spacing-padding-horizontal-huge" />

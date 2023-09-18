@@ -9,7 +9,7 @@ const Search = ({ setSearch, search }) => {
 
   return (
     <TextField
-      theme={Theme.dark}
+      theme={Theme.light}
       placeholder="Search ..."
       icon={mdiMagnify}
       value={search}
